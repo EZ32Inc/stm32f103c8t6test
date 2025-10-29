@@ -15,90 +15,21 @@ In VSCode, open the Extensions view (**Ctrl+Shift+X**), search for **“Platform
 
 ---
 
-## 3. Preparing the Code
+## 2. Preparing the Code
 
 It should be any **GNU Makefile–based** project for your target board.
 
 Here we prepared a project for **STM32F103C8T6 (BluePill)**.
 You can download and try it — it also includes the required configuration files to use with **ESP32JTAG + VSCode + Cortex-Debug**.
 
-👉 **GitHub Repository:** [https://github.com/EZ32Inc/start-stm32](https://github.com/EZ32Inc/start-stm32)
+👉 **GitHub Repository:** [https://github.com/EZ32Inc/start-stm32](https://github.com/EZ32Inc/stm32f103c8t6test)
 
 **Code copy:**
 ```bash
-git clone https://github.com/EZ32Inc/start-stm32.git
-cd start-stm32/blinky-hal
-make clean
-make
+git clone https://github.com/EZ32Inc/stm32f103c8t6test.git
 ```
 
 The BluePill STM32F103C8 board is used for this project.
-
-## LED Blink Program
-
-### [With No Libraries](blinky-no-lib) 
-
-This program is based on the article ***["Bare Metal STM32 Programming – LED Blink"](https://freeelectron.ro/bare-metal-stm32-led-blink/)*** without using any external libraries (except `stdint.h` which is only used to define `uint32_t`).
-
-In order to compile and link this program we need the main program source file [`main.c`](blinky-no-lib/src/main.c), the linker script file [`linker.ld`](blinky-no-lib/src/linker.ld), and the C run-time assembly file [`crt.s`](blinky-no-lib/src/crt.s).
-
-```c
-#include <stdint.h>
-
-// register address
-#define RCC_BASE      0x40021000
-#define GPIOC_BASE    0x40011000
-
-#define RCC_APB2ENR   *(volatile uint32_t *)(RCC_BASE   + 0x18)
-#define GPIOC_CRH     *(volatile uint32_t *)(GPIOC_BASE + 0x04)
-#define GPIOC_ODR     *(volatile uint32_t *)(GPIOC_BASE + 0x0C)
-
-// bit fields
-#define RCC_IOPCEN   (1<<4)
-#define GPIOC13      (1UL<<13)
-
-void main(void)
-{
-    RCC_APB2ENR |= RCC_IOPCEN;
-    GPIOC_CRH   &= 0xFF0FFFFF;
-    GPIOC_CRH   |= 0x00200000;
-
-    while(1)
-    {
-        GPIOC_ODR |=  GPIOC13;
-        for (int i = 0; i < 500000; i++); // arbitrary delay
-        GPIOC_ODR &= ~GPIOC13;
-        for (int i = 0; i < 500000; i++); // arbitrary delay
-    }
-}
-```
-
-### [Using STM32 HAL](blinky-hal)
-
-This program is based on the article ***["STM32 LED Blink"](https://stm32world.com/wiki/STM32_LED_Blink)*** which uses STM32 HAL to configure the microcontroller and blink the LED.
-
-The project initialization is done by STM32CubeMX.
-
-```c
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-
-	// Toggle the LED
-	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-
-	// Wait for 500 ms
-	HAL_Delay(500);
-
-	// Rinse and repeat :)
-
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
-```
 
 ### Boot Modes
 
