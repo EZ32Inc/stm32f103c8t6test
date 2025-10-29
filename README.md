@@ -1,6 +1,9 @@
-#  How to Debug STM32 (or Any ARM MCU) Using ESP32JTAG + VSCode + Platforio
+#  How to Debug STM32 (or Any ARM MCU) Using ESP32JTAG + VSCode + Platformio
 
-This guide explains how to set up **VSCode** and **Cortex-Debug** to debug an STM32 MCU using **ESP32JTAG**, a wireless JTAG interface based on ESP32 + FPGA.
+This guide explains how to set up **VSCode** and **Platformio** to debug an STM32 MCU using **ESP32JTAG**, a wireless JTAG interface based on ESP32 + FPGA.
+
+For more info on ESP32JTAG, please visit:
+👉 [https://www.crowdsupply.com/ez32/esp32jtag](https://www.crowdsupply.com/ez32/esp32jtag)
 
 ---
 
@@ -22,7 +25,7 @@ It should be any **GNU Makefile–based** project for your target board.
 Here we prepared a project for **STM32F103C8T6 (BluePill)**.
 You can download and try it — it also includes the required configuration files to use with **ESP32JTAG + VSCode + Cortex-Debug**.
 
-👉 **GitHub Repository:** [https://github.com/EZ32Inc/start-stm32](https://github.com/EZ32Inc/stm32f103c8t6test)
+👉 **GitHub Repository:** [https://github.com/EZ32Inc/stm32f103c8t6test](https://github.com/EZ32Inc/stm32f103c8t6test)
 
 **Code copy:**
 ```bash
@@ -55,6 +58,9 @@ A couple of special MCU pins has to be set-up to proper logical values to enter 
 
 ### Resources
 
+- [https://www.crowdsupply.com/ez32/esp32jtag](https://www.crowdsupply.com/ez32/esp32jtag)
+- [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- [https://github.com/m3y54m/start-stm32](https://github.com/m3y54m/start-stm32)
 - [Setting-up cross compiler and build tools for STM32](https://freeelectron.ro/arm-cross-compiler-tutorial-stm32/)
 - [Bare Metal STM32 Programming – LED Blink](https://freeelectron.ro/bare-metal-stm32-led-blink/)
 - [Bare Metal - From zero to blink](https://www.linuxembedded.fr/2021/02/bare-metal-from-zero-to-blink)
@@ -69,3 +75,8 @@ A couple of special MCU pins has to be set-up to proper logical values to enter 
 - [UART and new board introduction](https://wiki.st.com/stm32mcu/wiki/STM32StepByStep:Step3_Introduction_to_the_UART)
 - [Using the STM32 UART interface with HAL ](https://visualgdb.com/tutorials/arm/stm32/uart/hal/)
 - [st-flash tool](https://github.com/stlink-org/stlink)
+
+## 4. Credit goes to:
+[https://github.com/m3y54m/start-stm32](https://github.com/m3y54m/start-stm32)
+
+Thank you!
